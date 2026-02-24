@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>USEFUL PROGRAMMS</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="light-theme">
+    <!-- КРУТОЙ ФОН С ЧАСТИЦАМИ -->
+    <div class="particle-background" id="particle-bg"></div>
+
+    <!-- Переключатель языка слева -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" data-lang="ru">🇷🇺 Русский</button>
+        <button class="lang-btn" data-lang="en">🇬🇧 English</button>
+    </div>
+
+    <!-- Переключатель темы справа -->
+    <div class="theme-switcher">
+        <button class="theme-btn active" data-theme="light">☀️ Светлая</button>
+        <button class="theme-btn" data-theme="dark">🌙 Темная</button>
+    </div>
+
+    <h1 class="main-title" data-text="USEFUL PROGRAMMS - отличный вариант для скачивания приложений" data-ru="USEFUL PROGRAMMS - отличный вариант для скачивания приложений" data-en="USEFUL PROGRAMMS - great option for downloading apps">USEFUL PROGRAMMS - отличный вариант для скачивания приложений</h1>
+    
+    <div class="container">
+        <h1 class="changelog-title" data-ru="ChangeLog" data-en="ChangeLog">ChangeLog</h1>
+        
+        <div class="changelog">
+            <div class="version">
+                <h2 data-ru="useful programms v1.0 PC version" data-en="useful programms v1.0 PC version">useful programms v1.0 PC version</h2>
+                <p class="date" data-ru="23 декабря 2026" data-en="December 23, 2026">24 декабря 2026</p>
+                <ul>
+                    <li data-ru="🚀 TELEGRAM (TROLL) - фейковый установщик телеграм, который устанавливает MAX" data-en="🚀 TELEGRAM (TROLL) - fake telegram installer that installs MAX">🚀 TELEGRAM (TROLL) - фейковый установщик телеграм, который устанавливает MAX</li>
+                    <li data-ru="🚀 WORKSHOP (BETA) - пока что ничего нельзя сделать, ведь это бета" data-en="🚀 WORKSHOP (BETA) - nothing can be done yet, it's beta">🚀 WORKSHOP (BETA) - пока что ничего нельзя сделать, ведь это бета</li>
+                    <li data-ru="🚀 ZAPRET UPGRADE - обход блокировок многих игр, приложений, сайтов (тот же zapret, просто улучшенный)" data-en="🚀 ZAPRET UPGRADE - bypass blocks of many games, apps, websites (same zapret, just upgraded)">🚀 ZAPRET UPGRADE - обход блокировок многих игр, приложений, сайтов (тот же zapret, просто улучшенный)</li>
+                    <li data-ru="🚀 AYUGRAM - сторонний клиент телеграмм: можно читать удалённые сообщения, пользоваться парой функций премиума" data-en="🚀 AYUGRAM - third-party telegram client: can read deleted messages, use some premium features">🚀 AYUGRAM - сторонний клиент телеграмм: можно читать удалённые сообщения, пользоваться парой функций премиума</li>
+                </ul>
+            </div>
+        </div>
+        
+        <a href="https://github.com/sonatiafxck/Useful-programs" class="download-btn" target="_blank" data-ru="Скачать с GitHub" data-en="Download from GitHub">Скачать с GitHub</a>
+    </div>
+
+    <script>
+        // Переключатель тем
+        const themeBtns = document.querySelectorAll('.theme-btn');
+        const body = document.body;
+
+        themeBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                themeBtns.forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                const theme = this.getAttribute('data-theme');
+                body.className = theme + '-theme';
+            });
+        });
+
+        // Переключатель языков
+        const langBtns = document.querySelectorAll('.lang-btn');
+        
+        function changeLanguage(lang) {
+            langBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-lang') === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            document.querySelectorAll('[data-ru]').forEach(element => {
+                if (element.tagName === 'H1' || element.tagName === 'H2' || element.tagName === 'P' || element.tagName === 'A' || element.tagName === 'LI') {
+                    const newText = element.getAttribute(`data-${lang}`);
+                    element.textContent = newText;
+                    
+                    if (element.classList.contains('main-title')) {
+                        element.setAttribute('data-text', newText);
+                    }
+                }
+            });
+            
+            document.documentElement.lang = lang;
+        }
+
+        langBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const lang = this.getAttribute('data-lang');
+                changeLanguage(lang);
+            });
+        });
+
+        // ФУНКЦИЯ ДЛЯ СОЗДАНИЯ КРУТОГО ФОНА
+        function createParticleBackground() {
+            const bg = document.getElementById('particle-bg');
+            
+            // Создание частиц
+            for (let i = 0; i < 50; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.width = (Math.random() * 10 + 5) + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.animationDuration = (Math.random() * 10 + 5) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                bg.appendChild(particle);
+            }
+            
+            // Создание геометрических фигур
+            const shape1 = document.createElement('div');
+            shape1.className = 'shape shape-1';
+            bg.appendChild(shape1);
+            
+            const shape2 = document.createElement('div');
+            shape2.className = 'shape shape-2';
+            bg.appendChild(shape2);
+            
+            const shape3 = document.createElement('div');
+            shape3.className = 'shape shape-3';
+            bg.appendChild(shape3);
+            
+            // Создание энергетических линий
+            for (let i = 0; i < 5; i++) {
+                const line = document.createElement('div');
+                line.className = 'energy-line';
+                line.style.left = (i * 20) + '%';
+                line.style.animationDelay = (i * 0.5) + 's';
+                bg.appendChild(line);
+            }
+            
+            // Создание световых лучей
+            const lightRay = document.createElement('div');
+            lightRay.className = 'light-ray';
+            bg.appendChild(lightRay);
+        }
+
+        window.addEventListener('load', createParticleBackground);
+    </script>
+</body>
+</html>
